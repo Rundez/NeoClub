@@ -7,6 +7,10 @@ use CodeIgniter\Model;
 class UsersModel extends Model
 {
     protected $table = 'users';
+    protected $allowedFields = ['firstName', 'lastName', 'slug', 'email', 'created', 'password'];
+    protected $beforeInsert = ['beforeInsert'];
+    protected $beforeUpdate = ['beforeUpdate'];
+
 
     public function getUsers($slug = false)
     {
@@ -17,5 +21,25 @@ class UsersModel extends Model
         return $this->asArray()
             ->where(['slug' => $slug])
             ->first();
+    }
+
+    protected function beforeInsert(array $data)
+    {
+        $data = $this->passwordHash($data);
+        return $data;
+    }
+
+    protected function beforeUpdate(array $data)
+    {
+        $data = $this->passwordHash($data);
+        return $data;
+    }
+
+    protected function passwordHash(array $data)
+    {
+        if (isset($data['data']['password'])) {
+            $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+            return $data;
+        }
     }
 }
