@@ -46,7 +46,43 @@ class Users extends Controller
         //Helper class that takes care of validation data 
         helper(['form']);
 
-        echo view('templates/header');
+        if($this->request->getMethod() == 'post'){
+            //Validation
+            $rules = [
+                'email' => 'required|min_length[6]|max_length[50]|valid_email|validateUser[email,password]',
+                'password' => 'required|min_length[6]|max_length[255]',
+                
+            ];
+
+            //Custom error message
+            $errors = [
+                'password' => [
+                    'validateUser' => 'Email or password don\'t match'
+                ]
+            ];
+
+            if(! $this->validate($rules, $errors)){
+                $data['validation'] = $this->validator;
+            } else {
+                //Store the user in the db 
+                $model = new UsersModel();
+                
+                //$newData = [
+                //    'firstName' => $this->request->getVar('firstname'),
+                //    'lastName' => $this->request->getVar('lastname'),
+                //    'email' => $this->request->getVar('email'),
+                //    'password' => $this->request->getVar('password')
+                //];
+
+                //$model->save($newData);
+                //$session = session();
+                //$session->setFlashdata('success', 'Successful registration');
+                //return redirect()->to('/login');
+            }
+
+        } 
+
+        echo view('templates/header', $data);
         echo view('users/login');
         echo view('templates/footer');
     }
@@ -91,6 +127,18 @@ class Users extends Controller
 
         echo view('templates/header');
         echo view('users/register', $data);
+        echo view('templates/footer');
+    }
+
+    public function edit(){
+        $model = new UsersModel();
+
+        $data = [];
+        //Helper class that takes care of validation data 
+        helper(['form']);
+
+        echo view('templates/header');
+        echo view('users/login');
         echo view('templates/footer');
     }
 }
