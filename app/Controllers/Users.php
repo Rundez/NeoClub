@@ -88,7 +88,6 @@ class Users extends Controller
     }
 
     public function register(){
-        $model = new UsersModel();
 
         $data = [];
         //Helper class that takes care of validation data 

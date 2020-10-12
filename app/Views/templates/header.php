@@ -25,5 +25,8 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/login">Log in</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/chat">Chat</a>
+                    </li>
                 </ul>
     </nav>
