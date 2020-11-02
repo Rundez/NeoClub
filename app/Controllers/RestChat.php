@@ -23,10 +23,8 @@ class RestChat extends ResourceController
     public function create()
     {
         $model = new ChatModel();
-        $data = [
-            'message' => $this->request->getVar('message'),
-            'sender'  => $this->request->getVar('sender'),
-        ];
+        $data = $this->request->getJSON(true);
+        
         $model->insert($data);
         $response = [
             'status'   => 201,
