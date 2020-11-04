@@ -13,7 +13,7 @@ class Users extends Controller
 
         $data = [
             'users' => $model->getUsers(),
-            'title' => 'All users',
+            'title' => 'Neo ungdomsklubb medlemmer',
         ];
 
         echo view('templates/header', $data);
