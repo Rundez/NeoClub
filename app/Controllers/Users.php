@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UsersModel;
 use CodeIgniter\Controller;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Users extends Controller
 {
@@ -31,7 +32,7 @@ class Users extends Controller
         ];
 
         if (empty($data['user'])) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the user ' . $slug);
+            throw new PageNotFoundException('Cannot find the user ' . $slug);
         }
 
         echo view('templates/header', $data);
@@ -40,7 +41,7 @@ class Users extends Controller
     }
 
     public function login(){
-        $model = new UsersModel();
+        new UsersModel();
 
         $data = [];
         //Helper class that takes care of validation data 

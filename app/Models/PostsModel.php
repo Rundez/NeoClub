@@ -16,8 +16,6 @@ class PostsModel extends Model
         $builder->select('*');
         $builder->join('users', 'posts.id = users.id');
         $query = $builder->get();
-        $rows = $query->getResultArray();
-
-        return $rows;
+        return $query->getResultArray();
     }
 }
