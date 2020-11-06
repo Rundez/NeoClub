@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container mb-5 mt-3">
 
     <h1 style="margin-top: 0.5em;"><?= ($title); ?></h1>
     <hr>
-    <table class="display" id="selectedColumn">
+    <table class="table table-bordered" id="selectedColumn">
         <thead>
             <tr>
                 <th class="th-sm" scope="col">Nr</th>
@@ -15,9 +15,9 @@
             </tr>
         </thead>
 
+        <tbody>
         <?php if (!empty($users) && is_array($users)) : ?>
             <?php foreach ($users as $user) : ?>
-                <tbody>
                     <tr>
                         <td><?= $user['id'] ?></td>
                         <td><?= $user['firstName'] ?></td>
@@ -27,8 +27,8 @@
                         <td><?= $user['kontigentstatus'] ?></td>
                         <td><a class="btn btn-info" role="button" href="/users/<?= esc($user['slug'], 'url'); ?>">Got to user</a></td>
                     </tr>
-                </tbody>
             <?php endforeach; ?>
+        </tbody>
     </table>
 
 <?php else : ?>
@@ -36,6 +36,7 @@
     <p>Unable to find any users for you.</p>
 <?php endif ?>
 </div>
+
 
 <script>
 $(document).ready(function() {
