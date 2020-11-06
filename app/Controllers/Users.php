@@ -50,9 +50,8 @@ class Users extends Controller
         if($this->request->getMethod() == 'post'){
             //Validation
             $rules = [
-                'email' => 'required|min_length[6]|max_length[50]|valid_email|validateUser[email,password]',
+                'email' => 'required|min_length[6]|max_length[50]|valid_email|validateUser[email, password]',
                 'password' => 'required|min_length[6]|max_length[255]',
-                
             ];
 
             //Custom error message
@@ -65,27 +64,36 @@ class Users extends Controller
             if(! $this->validate($rules, $errors)){
                 $data['validation'] = $this->validator;
             } else {
-                //Store the user in the db 
                 $model = new UsersModel();
-                
-                //$newData = [
-                //    'firstName' => $this->request->getVar('firstname'),
-                //    'lastName' => $this->request->getVar('lastname'),
-                //    'email' => $this->request->getVar('email'),
-                //    'password' => $this->request->getVar('password')
-                //];
+                $user = $model->where('email', $this->request->getVar('email'))->first();
 
-                //$model->save($newData);
-                //$session = session();
-                //$session->setFlashdata('success', 'Successful registration');
-                //return redirect()->to('/login');
+
+                $this->setUserSession($user);
+                $session = session();
+                $session->setFlashdata('success', 'Successful login');
+
+                return redirect()->to('/posts');
             }
-
-        } 
+        }
 
         echo view('templates/header', $data);
         echo view('users/login');
         echo view('templates/footer');
+
+
+    }
+
+    private function setUserSession($user) {
+        $data = [
+            'id' => $user['id'],
+            'firstname' => $user['firstName'],
+            'lastname' => $user['lastName'],
+            'email' => $user['email'],
+            'isLoggedIn' => true
+        ];
+
+        session()->set($data);
+        return true;
     }
 
     public function register(){

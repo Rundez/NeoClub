@@ -10,10 +10,11 @@ class UserRules {
         // Checks if a user with that email exists 
         $user = $model->where('email', $data['email'])->first();
 
+        // If no user exists, return false
         if(!$user) 
             return false;
 
-        //Returns true if the input password matches the existing
+        //Returns true if the input password matches the existing pw in db
         return password_verify($data['password'], $user['password']);
     }
 }

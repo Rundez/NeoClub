@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/home.css">
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
     <?php if ($_SERVER['REQUEST_URI'] == "/chat") { echo "<link rel='stylesheet' href='/assets/css/chat.css'>";} ?>
 
@@ -31,7 +32,7 @@
                     <a class="nav-link" href="/posts">The wall <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/users">Profile</a>
+                    <a class="nav-link" href="/users">All users</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/login">Log in</a>
