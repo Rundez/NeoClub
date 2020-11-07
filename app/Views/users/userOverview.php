@@ -2,7 +2,7 @@
 
     <h1 style="margin-top: 0.5em;"><?= ($title); ?></h1>
     <hr>
-    <table class="table table-bordered" id="selectedColumn">
+    <table class="table table-active" id="selectedColumn">
         <thead>
             <tr>
                 <th class="th-sm" scope="col">Nr</th>
