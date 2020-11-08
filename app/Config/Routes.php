@@ -41,6 +41,8 @@ $routes->get('users', 'Users::index');
 $routes->get('pages/(:segment)', 'Pages::view/$1');
 $routes->get('chat', 'Chat::index');
 $routes->get('admin', 'Admin::index');
+$routes->get('logout', 'Users::logout');
+
 
 
 

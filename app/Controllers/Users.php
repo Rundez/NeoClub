@@ -27,8 +27,8 @@ class Users extends Controller
         $model = new UsersModel();
 
         $data = [
-           'user' => $model->getUsers($slug),
-           'title' => 'User'
+            'user' => $model->getUsers($slug),
+            'title' => 'User'
         ];
 
         if (empty($data['user'])) {
@@ -40,14 +40,15 @@ class Users extends Controller
         echo view('templates/footer', $data);
     }
 
-    public function login(){
+    public function login()
+    {
         new UsersModel();
 
         $data = [];
         //Helper class that takes care of validation data 
         helper(['form']);
 
-        if($this->request->getMethod() == 'post'){
+        if ($this->request->getMethod() == 'post') {
             //Validation
             $rules = [
                 'email' => 'required|min_length[6]|max_length[50]|valid_email|validateUser[email, password]',
@@ -61,7 +62,7 @@ class Users extends Controller
                 ]
             ];
 
-            if(! $this->validate($rules, $errors)){
+            if (!$this->validate($rules, $errors)) {
                 $data['validation'] = $this->validator;
             } else {
                 $model = new UsersModel();
@@ -83,7 +84,8 @@ class Users extends Controller
 
     }
 
-    private function setUserSession($user) {
+    private function setUserSession($user)
+    {
         $data = [
             'id' => $user['id'],
             'firstname' => $user['firstName'],
@@ -96,13 +98,14 @@ class Users extends Controller
         return true;
     }
 
-    public function register(){
+    public function register()
+    {
 
         $data = [];
         //Helper class that takes care of validation data 
         helper(['form']);
 
-        if($this->request->getMethod() == 'post'){
+        if ($this->request->getMethod() == 'post') {
             //Validation
             $rules = [
                 'firstname' => 'required|min_length[3]|max_length[20]',
@@ -112,12 +115,12 @@ class Users extends Controller
                 'password_confirm' => 'matches[password]'
             ];
 
-            if(! $this->validate($rules)){
+            if (!$this->validate($rules)) {
                 $data['validation'] = $this->validator;
             } else {
                 //Store the user in the db 
                 $model = new UsersModel();
-                
+
                 $newData = [
                     'firstName' => $this->request->getVar('firstname'),
                     'lastName' => $this->request->getVar('lastname'),
@@ -131,14 +134,15 @@ class Users extends Controller
                 return redirect()->to('/login');
             }
 
-        } 
+        }
 
         echo view('templates/header');
         echo view('users/register', $data);
         echo view('templates/footer');
     }
 
-    public function edit(){
+    public function edit()
+    {
         $model = new UsersModel();
 
         $data = [];
@@ -148,5 +152,14 @@ class Users extends Controller
         echo view('templates/header');
         echo view('users/login');
         echo view('templates/footer');
+    }
+
+    public function logout()
+    {
+        if(session()->get('isLoggedIn')) {
+            session()->remove('isLoggedIn');
+        }
+
+        return redirect()->to('/');
     }
 }

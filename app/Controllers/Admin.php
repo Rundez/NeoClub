@@ -17,4 +17,6 @@ class Admin extends Controller
         echo view('admin/admin', $data);
         echo view('templates/footer');
     }
+
+
 }

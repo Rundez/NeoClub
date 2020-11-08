@@ -70,7 +70,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/register">Register</a>
                 </li>
-
             </ul>
         <?php endif; ?>
     </div>
