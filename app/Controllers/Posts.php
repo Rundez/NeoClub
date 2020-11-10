@@ -13,7 +13,7 @@ class Posts extends Controller
 
         $data = [
             'posts' => $model->getPosts(),
-            'title' => 'All posts',
+            'title' => 'The wall',
         ];
 
         echo view('templates/header', $data);

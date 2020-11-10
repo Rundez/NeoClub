@@ -42,6 +42,11 @@ $routes->get('pages/(:segment)', 'Pages::view/$1');
 $routes->get('chat', 'Chat::index');
 $routes->get('admin', 'Admin::index');
 $routes->get('logout', 'Users::logout');
+$routes->get('activities/add', 'Activities::add');
+$routes->get('activities/(:segment)', 'Activities::view/$1');
+$routes->get('activities', 'Activities::index');
+
+
 
 
 

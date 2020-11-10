@@ -3,28 +3,27 @@
 
     <div class="chat-container" id="chat-container">
 
-    <ul id="message-list">
-    </ul>
+        <ul id="message-list">
+        </ul>
     </div>
     <form class="form-group" id="chatForm">
-        <input class="form-control" type="text" style="margin: 10px; width: 50%;" name="message" placeholder="Your message">
+        <input class="form-control" type="text" style="margin: 10px; width: 50%;" name="message"
+               placeholder="Your message">
         <input class="btn btn-primary" type="submit" name="submit">
         <input id="sender" type="text" name="sender" style="display: none" value="">
-
     </form>
-
     </body>
 </div>
 
 <script>
 
-    document.addEventListener("DOMContentLoaded", function(e) {
+    document.addEventListener("DOMContentLoaded", function (e) {
         grabMessages()
-        const refreshInterval = setInterval(function() {
+        const refreshInterval = setInterval(function () {
             grabMessages()
         }, 3000)
         const form = document.querySelector("#chatForm")
-        form.addEventListener("submit", function(e) {
+        form.addEventListener("submit", function (e) {
             e.preventDefault()
             postMessage(e.target)
         })
@@ -47,18 +46,18 @@
 
     function postMessage(form) {
         fetch("/restchat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Requested-With": "XMLHttpRequest"
-                },
-                body: JSON.stringify({
-                    "sender": 5,
-                    "message": form.message.value
-                })
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            body: JSON.stringify({
+                "sender": 5,
+                "message": form.message.value
             })
+        })
             .then(resp => resp.json())
-            .then(function(json) {
+            .then(function (json) {
                 grabMessages()
                 form.message.value = ""
             })
