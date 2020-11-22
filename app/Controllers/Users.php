@@ -18,7 +18,13 @@ class Users extends Controller
             'users' => $model->getUsers(),
             'title' => 'Neo ungdomsklubb medlemmer',
         ];
-    
+
+        $allHobbies = array_map(fn($user) => $hobbies->getUserHobbies($user['id']), $data['users']);
+
+        // Dette MÅ fikses....
+        for($i = 0; $i < count($data['users']); $i++) {
+            $data['users'][$i]['hobbies'] = $allHobbies[$i] ? $allHobbies[$i] : "Ingen data";
+        }
         
         echo view('templates/header', $data);
         echo view('users/useroverview', $data);

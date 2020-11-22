@@ -16,7 +16,7 @@ class HobbyModel extends Model
         $builder = $db->table($this->table);
 
         $builder->select("hobby");
-        $builder->where("userID = $userID");
+        $builder->where("userhobbies.userID = $userID");
         
         return $builder->get()->getResultArray();
     }

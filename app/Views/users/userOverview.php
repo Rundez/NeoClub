@@ -1,4 +1,4 @@
-<?php if(!session()->get('isLoggedIn')) {
+<?php if (!session()->get('isLoggedIn')) {
     header('location:/');
     exit();
 } ?>
@@ -13,23 +13,32 @@
                 <th class="th-sm" scope="col">Epost</th>
                 <th class="th-sm" scope="col">Medlem siden</th>
                 <th class="th-sm" scope="col">Kontigentstatus</th>
+                <th class="th-sm" scope="col">Aktiviteter</th>
                 <th class="th-sm" scope="col">Gå til medlem</th>
-
             </tr>
         </thead>
 
         <tbody>
-        <?php if (!empty($users) && is_array($users)) : ?>
-            <?php foreach ($users as $user) : ?>
+            <?php if (!empty($users) && is_array($users)) : ?>
+                <?php foreach ($users as $user) : ?>
                     <tr>
                         <td><?= $user['firstName'] ?></td>
                         <td><?= $user['lastName'] ?></td>
                         <td><?= $user['email'] ?></td>
                         <td><?= $user['created'] ?></td>
                         <td><?= $user['kontigentstatus'] ?></td>
+                        <td>
+                        <?php
+                        if ($user['hobbies'] != "Ingen data") {
+                            foreach ($user['hobbies'] as $hobbies) {
+                                echo $hobbies['hobby'] . "\n";
+                            }
+                        } else {echo "Ingen data";}
+                        ?>
+                        </td>
                         <td><a class="btn btn-info" role="button" href="/users/<?= esc($user['slug'], 'url'); ?>">Got to user</a></td>
                     </tr>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
         </tbody>
     </table>
 
@@ -41,8 +50,7 @@
 
 
 <script>
-$(document).ready(function() {
-    $('#selectedColumn').DataTable();
-} );
+    $(document).ready(function() {
+        $('#selectedColumn').DataTable();
+    });
 </script>
-
