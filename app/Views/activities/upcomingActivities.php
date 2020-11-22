@@ -1,5 +1,10 @@
+<?php if(!session()->get('isLoggedIn')) {
+    header('location:/');
+    exit();
+} ?>
+
 <div class="container">
-    <h1 style="margin:auto; width:50%; margin-top: 0.5em" "><?= $title ?> </h1>
+    <h1 style="margin:auto; width:50%; margin-top: 0.5em" ><?= $title ?> </h1>
     <hr>
     <?php if (!empty($activities) && is_array($activities)) : ?>
     <!-- Activities table -->

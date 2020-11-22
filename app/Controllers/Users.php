@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\HobbyModel;
 use App\Models\UsersModel;
 use CodeIgniter\Controller;
 use CodeIgniter\Exceptions\PageNotFoundException;
@@ -11,12 +12,14 @@ class Users extends Controller
     public function index()
     {
         $model = new UsersModel();
+        $hobbies = new HobbyModel();
 
         $data = [
             'users' => $model->getUsers(),
             'title' => 'Neo ungdomsklubb medlemmer',
         ];
-
+    
+        
         echo view('templates/header', $data);
         echo view('users/useroverview', $data);
         echo view('templates/footer', $data);
@@ -80,8 +83,6 @@ class Users extends Controller
         echo view('templates/header', $data);
         echo view('users/login');
         echo view('templates/footer');
-
-
     }
 
     private function setUserSession($user)

@@ -1,3 +1,7 @@
+<?php if(!session()->get('isLoggedIn')) {
+    header('location:/');
+    exit();
+} ?>
 <div class="container">
   <div class="container">
     <div class="card" style="width: 18rem;">

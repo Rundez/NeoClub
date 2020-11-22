@@ -9,17 +9,33 @@ use CodeIgniter\Model;
 
 class Activities extends Controller
 {
+    // Fetches upcoming activities
     public function index()
     {
         $model = new ActivityModel();
 
         $data = [
             'title' => 'Upcoming activities',
+            'activities' => $model->getUpcomingActivities()
+        ];
+
+        echo view('templates/header', $data);
+        echo view('activities/upcomingActivities');
+        echo view('templates/footer');
+    }
+
+    // Fetches previous and upcoming acitivites
+    public function allActivities()
+    {
+        $model = new ActivityModel();
+
+        $data = [
+            'title' => 'All activities',
             'activities' => $model->getActivities()
         ];
 
         echo view('templates/header', $data);
-        echo view('activities/allActivities');
+        echo view('activities/upcomingActivities');
         echo view('templates/footer');
     }
 

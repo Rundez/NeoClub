@@ -1,3 +1,7 @@
+<?php if(!session()->get('isLoggedIn')) {
+    header('location:/');
+    exit();
+} ?>
 <div class="container" style="margin-top: 1em">
     <div class="jumbotron" style="background-color:white;">
     <h1><?= $title?></h1>

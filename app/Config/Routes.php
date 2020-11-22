@@ -44,7 +44,9 @@ $routes->get('admin', 'Admin::index');
 $routes->get('logout', 'Users::logout');
 $routes->get('activities/add', 'Activities::add');
 $routes->get('activities/(:segment)', 'Activities::view/$1');
-$routes->get('activities', 'Activities::index');
+$routes->get('upcoming', 'Activities::index');
+$routes->get('activities', 'Activities::allActivities');
+
 
 
 

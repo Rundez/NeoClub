@@ -1,17 +1,20 @@
+<?php if(!session()->get('isLoggedIn')) {
+    header('location:/');
+    exit();
+} ?>
 <div class="container mb-5 mt-3">
-
     <h1 style="margin-top: 0.5em;"><?= ($title); ?></h1>
     <hr>
     <table class="table table-active" id="selectedColumn">
         <thead>
             <tr>
-                <th class="th-sm" scope="col">Nr</th>
                 <th class="th-sm" scope="col">Fornavn</th>
                 <th class="th-sm" scope="col">Etternavn</th>
                 <th class="th-sm" scope="col">Epost</th>
                 <th class="th-sm" scope="col">Medlem siden</th>
                 <th class="th-sm" scope="col">Kontigentstatus</th>
                 <th class="th-sm" scope="col">Gå til medlem</th>
+
             </tr>
         </thead>
 
@@ -19,7 +22,6 @@
         <?php if (!empty($users) && is_array($users)) : ?>
             <?php foreach ($users as $user) : ?>
                     <tr>
-                        <td><?= $user['id'] ?></td>
                         <td><?= $user['firstName'] ?></td>
                         <td><?= $user['lastName'] ?></td>
                         <td><?= $user['email'] ?></td>

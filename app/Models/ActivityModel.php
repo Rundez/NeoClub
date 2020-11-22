@@ -20,4 +20,16 @@ class ActivityModel extends Model
             ->where(['slug' => $slug])
             ->first();
     }
+
+    // Fetches all activities from today and in the future
+    public function getUpcomingActivities() 
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table($this->table);
+
+        $builder->select("*");
+        $builder->where("start >= DATE(NOW())");
+        
+        return $builder->get()->getResultArray();
+    }
 }

@@ -1,3 +1,8 @@
+<?php if(!session()->get('isLoggedIn')) {
+    header('location:/');
+    exit();
+} ?>
+
 <div class="container">
     <h1 style="width:50%; margin:auto;">This is the future chat..</h1>
 
