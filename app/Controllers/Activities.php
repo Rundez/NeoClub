@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\ActivityModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Model;
 
 class Activities extends Controller
@@ -22,11 +23,23 @@ class Activities extends Controller
         echo view('templates/footer');
     }
 
-    public function view($page = 'home')
+    public function view($slug = null)
     {
+        $model = new ActivityModel();
+        $data = [
+            'activity' => $model->getActivities($slug),
+        ];
 
 
+        if (empty($data['activity'])) {
+            throw new PageNotFoundException('Cannot find the user ' . $slug);
+        }
+
+        echo view('templates/header', $data);
+        echo view('activities/selectedActivity', $data);
+        echo view('templates/footer', $data);
     }
+
 
     public function add()
     {
@@ -35,6 +48,7 @@ class Activities extends Controller
         $start = $this->request->getVar('start');
         $end = $this->request->getVar('end');
         $body = $this->request->getVar('body');
+        $image = $this->request->getFile('image');
 
         $data = [
             'name' => $name,
@@ -43,7 +57,8 @@ class Activities extends Controller
             'end' => $end,
             'body' => $body,
         ];
-
+        //add the file to uploads and add the name to data
+        $data['image'] = $this->addFile($image);
         $model = new ActivityModel();
 
         if($model->save($data)) {
@@ -51,6 +66,17 @@ class Activities extends Controller
         } else {
             return redirect()->to('/users');
         }
+    }
+
+    private function addFile($image)
+    {
+        if ($image->isValid() && ! $image->hasMoved())
+        {
+            $newName = $image->getRandomName();
+            $image->move('uploads', $newName);
+            return $newName;
+        }
+        return false;
     }
 
 }

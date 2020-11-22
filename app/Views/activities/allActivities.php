@@ -1,20 +1,19 @@
 <div class="container">
     <h1 style="margin:auto; width:50%; margin-top: 0.5em" "><?= $title ?> </h1>
     <hr>
+    <?php if (!empty($activities) && is_array($activities)) : ?>
     <!-- Activities table -->
     <table class="table table-active" id="selectedColumn">
         <thead>
         <tr>
             <th class="th-sm" scope="col">Navn</th>
             <th class="th-sm" scope="col">Aktivitet</th>
-            <th class="th-sm" scope="col">Start</th>
-            <th class="th-sm" scope="col">Slutt</th>
+            <th class="th-sm" scope="col">Start (YYYY-MM-DD)</th>
+            <th class="th-sm" scope="col">Slutt (YYYY-MM-DD)</th>
             <th class="th-sm" scope="col">Mer info</th>
         </tr>
         </thead>
-
         <tbody>
-        <?php if (!empty($activities) && is_array($activities)) : ?>
         <?php foreach ($activities as $activity) : ?>
             <tr>
                 <td><?= $activity['name'] ?></td>
@@ -28,8 +27,8 @@
         </tbody>
     </table>
 <?php else: ?>
-    <h1>No upcoming activities</h1>
-
+    <h4 style="color: #85271f">No upcoming activities</h4>
+    <hr>
 <?php endif ?>
 
     <!-- Button trigger modal -->
@@ -49,7 +48,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/activities/add" method="get">
+                    <form action="/activities/add" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input name="name" type="text" class="form-control" id="name"
@@ -75,6 +74,10 @@
                             <textarea name="body" rows="3" type="text" class="form-control" id="body"
                                    placeholder="Beskrivelse"></textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="image">Velg bilde</label>
+                            <input name="image" type="file" class="form-control" id="image">
+                        </div>
 
                 </div>
                 <div class="modal-footer">
@@ -86,3 +89,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#selectedColumn').DataTable();
+    } );
+</script>
