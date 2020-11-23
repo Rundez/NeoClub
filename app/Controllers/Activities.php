@@ -73,26 +73,31 @@ class Activities extends Controller
             'end' => $end,
             'body' => $body,
         ];
-        //add the file to uploads and add the name to data
-        $data['image'] = $this->addFile($image);
-        $model = new ActivityModel();
+        // Loads the session helper
+        $session = session();
 
-        if($model->save($data)) {
-            return redirect()->to('/activities');
-        } else {
-            return redirect()->to('/users');
+        if ($image->getSizeByUnit('mb') < 2 && $image->guessExtension() == 'jpg') {
+            //add the file to uploads and add the name to the data array
+            $data['image'] = $this->addFile($image);
+            $model = new ActivityModel();
+
+            if ($model->save($data)) {
+                $session->set_flashdata('Activity added succesfully!', 'flash');
+                return redirect()->to('/activities');
+            } else {
+                $session->set_flashdata('Something went wrong! Please try again.', 'flash');
+                return redirect()->to('/activities');
+            }
         }
     }
 
     private function addFile($image)
     {
-        if ($image->isValid() && ! $image->hasMoved())
-        {
+        if ($image->isValid() && !$image->hasMoved()) {
             $newName = $image->getRandomName();
             $image->move('uploads', $newName);
             return $newName;
         }
         return false;
     }
-
 }

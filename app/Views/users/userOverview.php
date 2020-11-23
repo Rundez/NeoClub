@@ -36,7 +36,7 @@
                         } else {echo "Ingen data";}
                         ?>
                         </td>
-                        <td><a class="btn btn-info" role="button" href="/users/<?= esc($user['slug'], 'url'); ?>">Got to user</a></td>
+                        <td><a class="btn btn-info" role="button" href="/users/<?= esc($user['slug'], 'url'); ?>">Go to user</a></td>
                     </tr>
                 <?php endforeach; ?>
         </tbody>
