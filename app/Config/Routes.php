@@ -46,6 +46,8 @@ $routes->get('activities/add', 'Activities::add');
 $routes->get('activities/(:segment)', 'Activities::view/$1');
 $routes->get('upcoming', 'Activities::index');
 $routes->get('activities', 'Activities::allActivities');
+$routes->get('profile', 'Users::profile');
+
 
 
 

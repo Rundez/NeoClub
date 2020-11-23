@@ -169,4 +169,35 @@ class Users extends Controller
 
         return redirect()->to('/');
     }
+
+    public function profile()
+    {
+        $data = [
+            'firstname' => session()->get('firstname'),
+            'lastname' => session()->get('lastname'),
+        ];
+
+        echo view('templates/header', $data);
+        echo view('users/profile');
+        echo view('templates/footer');
+
+    }
+
+    public function addProfilePic() 
+    {
+        $image = $this->request->getFile('image');
+
+        // Checks the size and type if the file
+        if($image->getSizeByUnit('mb') <= 2 && (strpos($image->guessExtension(), 'jpg') !== false) || strpos($image->guessExtension(), 'png') !== false) {
+            $image->move('uploads', session()->get('id'));
+            return redirect()->to("/profile");
+        } else {
+            $session = session();
+            $session->setFlashdata('error', 'Please select a .jpg or .png smaller then 2mb');
+
+            return redirect()->to("/profile");
+
+        }
+
+    }
 }

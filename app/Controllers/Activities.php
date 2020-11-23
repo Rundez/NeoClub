@@ -81,10 +81,10 @@ class Activities extends Controller
         $model = new ActivityModel();
 
         if($model->save($data)) {
-            $session->setflashdata('Activity added succesfully!', 'flash');
+            $session->setflashdata('success', 'Activity added succesfully');
             return redirect()->to('/activities');
         } else {
-            $session->setflashdata('Something went wrong! Please try again.', 'flash');
+            $session->setflashdata('error', 'Something went wrong! Please try again');
             return redirect()->to('/activities');
         }
     }
