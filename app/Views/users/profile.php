@@ -34,7 +34,7 @@
             <div class="px-4 py-3">
                 <h5 class="mb-0">About</h5>
                 <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">Web Developer</p>
+                    <p class="font-italic mb-0">Email: <?= session()->get('email') ?></p>
                     <p class="font-italic mb-0">Lives in New York</p>
                     <p class="font-italic mb-0">Photographer</p>
                 </div>

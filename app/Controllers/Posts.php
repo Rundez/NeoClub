@@ -11,10 +11,12 @@ class Posts extends Controller
     {
         $model = new PostsModel();
 
+        // fetch data from DB. Reverse the array.
         $data = [
-            'posts' => $model->getPosts(),
+            'posts' => array_reverse($model->getPosts(), true),
             'title' => 'The wall',
         ];
+
 
         echo view('templates/header', $data);
         echo view('posts/wall');

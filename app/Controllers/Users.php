@@ -196,7 +196,6 @@ class Users extends Controller
             $session->setFlashdata('error', 'Please select a .jpg or .png smaller then 2mb');
 
             return redirect()->to("/profile");
-
         }
 
     }
