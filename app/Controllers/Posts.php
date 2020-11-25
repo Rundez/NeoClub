@@ -28,8 +28,8 @@ class Posts extends Controller
         $model = new PostsModel();
 
         $data = [
-           'user' => $model->getUsers($slug),
-           'title' => 'User'
+            'user' => $model->getUsers($slug),
+            'title' => 'User'
         ];
 
         if (empty($data['user'])) {
@@ -39,5 +39,26 @@ class Posts extends Controller
         echo view('templates/header', $data);
         echo view('users/selectedUser', $data);
         echo view('templates/footer', $data);
+    }
+
+    public function newPost()
+    {
+
+        $data = [
+            'title' => $this->request->getVar('title'),
+            'body' => $this->request->getVar('body'),
+            'creator' => session()->get('id')
+        ];
+
+        // Authenticate if user is logged in
+        if (session()->get('isLoggedIn') != 1) {
+            session()->setflashdata('error', 'You have to be logged in to use this feature!');
+            return redirect()->to('/posts');
+        }
+
+        $model = new PostsModel();
+        if($model->insert($data)) {
+            return redirect()->to('/posts');
+        }
     }
 }

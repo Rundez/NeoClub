@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class PostsModel extends Model
 {
     protected $table = 'posts';
+    protected $allowedFields = ['creator', 'title', 'body'];
 
     public function getPosts()
     {
