@@ -1,4 +1,4 @@
-<?php if(!session()->get('isLoggedIn')) {
+<?php if (!session()->get('isLoggedIn')) {
     header('location:/');
     exit();
 } ?>
@@ -12,25 +12,27 @@
         </ul>
     </div>
     <form class="form-group" id="chatForm">
-        <input class="form-control" type="text" style="margin: 10px; width: 50%;" name="message"
-               placeholder="Your message">
+        <input class="form-control" type="text" style="margin: 10px; width: 50%;" name="message" placeholder="Your message">
         <input class="btn btn-primary" type="submit" name="submit">
-        <input id="sender" type="text" name="sender" style="display: none" value="">
+        <input id="sender" type="text" name="sender" style="display: none" value="<?= session()->get('id') ?>">
     </form>
     </body>
 </div>
 
 <script>
-
-    document.addEventListener("DOMContentLoaded", function (e) {
+    document.addEventListener("DOMContentLoaded", function(e) {
         grabMessages()
-        const refreshInterval = setInterval(function () {
+
+        const refreshInterval = setInterval(function() {
             grabMessages()
         }, 3000)
         const form = document.querySelector("#chatForm")
-        form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", function(e) {
             e.preventDefault()
             postMessage(e.target)
+            $("#chat-container").animate({
+                scrollTop: $('#chat-container').prop("scrollHeight")
+            }, 1000);
         })
     })
 
@@ -45,32 +47,34 @@
             .then(data => {
                 console.log(data.chat);
                 renderMessages(data.chat);
-                //form.message.value = "";
             }))
     }
 
     function postMessage(form) {
         fetch("/restchat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Requested-With": "XMLHttpRequest"
-            },
-            body: JSON.stringify({
-                "sender": 5,
-                "message": form.message.value
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: JSON.stringify({
+                    "sender": form.sender.value,
+                    "message": form.message.value
+                })
             })
-        })
             .then(resp => resp.json())
-            .then(function (json) {
+            .then(function(json) {
                 grabMessages()
                 form.message.value = ""
             })
     }
 
     function renderMessages(messages) {
+        messages.sort(((a, b) => a.id - b.id))
+
+
         //const length = messages.length
-        //const mostRecent = messages.slice(length - 50)
+        const mostRecent = messages.slice(0, -50)
         const list = document.querySelector("#message-list")
         let newList = ""
         messages.forEach(message => {
@@ -78,16 +82,26 @@
                 newList += makeLi(message)
             }
         })
+        // Append messages to the list
         if (newList != "") {
             list.innerHTML += newList
+            let newLength = messages.length;
+
+            // Scroll to bottom after page refresh
+            if (newLength > length) {
+                $("#chat-container").animate({
+                    scrollTop: $('#chat-container').prop("scrollHeight")
+                }, 1000);
+                length = newLength;
+            }
         }
     }
 
     function makeLi(message) {
         // Some logic to make your own messages say You instead of your name
-        let sender = document.querySelector("#sender").value
-        if (message.sender == sender) {
-            sender = "You"
+        //let sender = document.querySelector("#sender").value
+        if (message.sender == <?= session()->get('id') ?>) {
+            message.sender = "You"
         } else {
             sender = message.sender
         }
@@ -98,7 +112,7 @@
         <img src="../images/Persona.png" alt="Avatar">
         <h4>${message.sender}</h4>
         <p>${message.message}</p>
-        <span class="time-right">11:00</span>
+        <span class="time-right">${message.sent.slice(0, -7)}</span>
     </div>
     </li>
 

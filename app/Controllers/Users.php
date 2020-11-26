@@ -148,18 +148,6 @@ class Users extends Controller
         echo view('templates/footer');
     }
 
-    public function edit()
-    {
-        $model = new UsersModel();
-
-        $data = [];
-        //Helper class that takes care of validation data 
-        helper(['form']);
-
-        echo view('templates/header');
-        echo view('users/login');
-        echo view('templates/footer');
-    }
 
     public function logout()
     {
@@ -197,6 +185,18 @@ class Users extends Controller
 
             return redirect()->to("/profile");
         }
+    }
+
+    public function edit() 
+    {
+        $data = [
+
+        ];
+
+        echo "Hello";
+        echo view('templates/header', $data);
+        echo view('users/editProfile');
+        echo view('templates/footer');
 
     }
 }

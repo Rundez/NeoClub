@@ -42,7 +42,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/chat">Chat</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item active dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Aktiviteter
                         </a>
@@ -51,14 +51,20 @@
                             <a class="dropdown-item" href="/activities">Alle aktiviteter</a>
                         </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/profile">Profile</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/logout">Log out</a>
+                    <li class="nav-item active dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Profile
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/profile">My profile</a>
+                            <a class="dropdown-item" href="/edit">Edit profile</a>
+                        </div>
                     </li>
                     <li class="nav-item active">
                         <p style="margin: 0" class="nav-link"><?= session()->get('firstname') ?></p>
+                    </li>
+                    <li class="nav-item active float-sm-right">
+                        <a class="nav-link" href="/logout">Log out</a>
                     </li>
 
                 </ul>

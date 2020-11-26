@@ -48,6 +48,8 @@ $routes->get('upcoming', 'Activities::index');
 $routes->get('activities', 'Activities::allActivities');
 $routes->get('profile', 'Users::profile');
 $routes->get('posts', 'Posts::index');
+$routes->get('edit', 'Users::edit');
+
 
 
 
