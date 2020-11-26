@@ -15,7 +15,7 @@ class RestChat extends ResourceController
     public function index()
     {
         $model = new ChatModel();
-        $data['chat'] = $model->orderBy('sender', 'DESC')->findAll();
+        $data['chat'] = $model->orderBy('sender', 'DESC')->fetch();
         return $this->respond($data);
     }
 

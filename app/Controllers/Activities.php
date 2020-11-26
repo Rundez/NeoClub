@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\ActivityModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\CLI\CLI;
 use CodeIgniter\Model;
 
 class Activities extends Controller
@@ -91,7 +92,7 @@ class Activities extends Controller
 
     private function addFile($image)
     {
-        if ($image->isValid() && ! $image->hasMoved())
+        if ($image->isValid() && !$image->hasMoved())
         {
             $newName = $image->getRandomName();
             $image->move('uploads', $newName);

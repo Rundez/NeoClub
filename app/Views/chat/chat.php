@@ -103,7 +103,7 @@
         if (message.sender == <?= session()->get('id') ?>) {
             message.sender = "You"
         } else {
-            sender = message.sender
+            message.sender = `${message.firstName} ${message.lastName}`
         }
         //prettier-ignore
         return `

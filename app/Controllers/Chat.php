@@ -20,7 +20,5 @@ class Chat extends Controller
         echo view('templates/header');
         echo view('chat/chat');
         echo view('templates/footer');
-    }
-
-    
+    }    
 }
