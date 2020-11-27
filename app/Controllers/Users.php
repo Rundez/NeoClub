@@ -190,13 +190,9 @@ class Users extends Controller
     public function edit() 
     {
         $data = [
-
+            'firstname' => session()->get('firstname'),
+            'lastname' => session()->get('lastname'),
         ];
-
-        echo "Hello";
-        echo view('templates/header', $data);
-        echo view('users/editProfile');
-        echo view('templates/footer');
 
     }
 }

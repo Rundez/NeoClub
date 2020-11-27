@@ -9,7 +9,12 @@
                         <h4 class="mt-0 mb-0"><?= $firstname ?> <?= $lastname ?></h4>
                         <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i></p>
                     </div>
+                    <div class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#editProfile">Edit email</div>
+                    <div class="btn btn-outline-dark btn-sm ml-3 mr-3" data-toggle="modal" data-target="#editProfile">Edit password</div>
+
+                    <div class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#editProfile">Edit name</div>
                 </div>
+                
             </div>
             <div class="bg-light p-4 d-flex justify-content-end text-center">
                 <ul class="list-inline mb-0">
@@ -58,7 +63,7 @@
 
 
 
-<!-- Modal -->
+<!--Upload Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -83,6 +88,43 @@
         </div>
     </div>
 </div>
+
+
+
+<!--Upload Modal -->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/users/addProfilePic" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">New password</label>
+                        <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="New password">
+                    </div>
+                    <div class="form-group">
+                        <label for="aktivitet">Confirm the new password</label>
+                        <input name="aktivitet" type="text" class="form-control" id="aktivitet" placeholder="Re-enter the new password">
+                    </div>
+                    <div class="form-group">
+                        <label for="aktivitet">Confirm with your current password</label>
+                        <input name="aktivitet" type="text" class="form-control" id="aktivitet" placeholder="Old password">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </div>
 
 
