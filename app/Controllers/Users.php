@@ -107,7 +107,6 @@ class Users extends Controller
 
     public function register()
     {
-
         $data = [];
         //Helper class that takes care of validation data 
         helper(['form']);
@@ -140,7 +139,6 @@ class Users extends Controller
                 $session->setFlashdata('success', 'Successful registration');
                 return redirect()->to('/login');
             }
-
         }
 
         echo view('templates/header');
