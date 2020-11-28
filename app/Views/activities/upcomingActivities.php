@@ -83,7 +83,6 @@
                             <label for="image">Velg bilde</label>
                             <input name="image" type="file" class="form-control" id="image">
                         </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
