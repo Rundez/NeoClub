@@ -23,6 +23,16 @@ class UsersModel extends Model
             ->first();
     }
 
+    public function updateProfile($id, $data)
+    {
+        $db = \Config\Database::connect();
+
+        $builder = $db->table('users');
+
+        $builder->where('id', $id);
+        $builder->update($data);
+    }
+
     protected function beforeInsert(array $data)
     {
         $data = $this->passwordHash($data);
@@ -42,4 +52,6 @@ class UsersModel extends Model
             return $data;
         }
     }
+
+    
 }

@@ -192,9 +192,16 @@ class Users extends Controller
     public function edit() 
     {
         $data = [
-            'firstname' => session()->get('firstname'),
-            'lastname' => session()->get('lastname'),
+            'firstname' => $this->request->getVar('firstname'),
+            'lastname' => $this->request->getVar('lastname'),
+            'email' => $this->request->getVar('email'),
         ];
 
+        $model = new UsersModel();
+        $model->updateProfile(session()->get('id'), $data);
+
+        session()->setFlashdata('success', 'Profile updated. Please relog to see the changes');
+
+        return redirect()->to("/profile");
     }
 }

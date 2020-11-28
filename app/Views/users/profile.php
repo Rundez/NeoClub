@@ -34,7 +34,14 @@
                 <div class="alert alert-danger" width="75%" role="alert">
                     <?= session()->get('error') ?>
                 </div>
+
+                <?php elseif (session()->get('success')) : ?>
+                    <div class="alert alert-success" width="75%" role="alert">
+                    <?= session()->get('success') ?>
+                </div>
+                    
             <?php endif ?>
+
 
             <?php if (!empty($hobbies) && is_array($hobbies)) : ?>
                 <div class="px-4 py-3">
@@ -104,7 +111,7 @@
 
 
 
-<!--Upload Modal -->
+<!--Edit profile modal -->
 <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -115,14 +122,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/users/addProfilePic" method="post" enctype="multipart/form-data">
+                <form action="/users/edit" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="first">First name</label>
-                        <input name="first" type="text" class="form-control" value="<?= $firstname ?>" placeholder="First name">
+                        <label for="firstname">First name</label>
+                        <input name="firstname" type="text" class="form-control" value="<?= $firstname ?>" placeholder="First name">
                     </div>
                     <div class="form-group">
-                        <label for="last">Last name</label>
-                        <input name="last" type="text" class="form-control" value="<?= $lastname ?>" placeholder="Last name">
+                        <label for="lastname">Last name</label>
+                        <input name="lastname" type="text" class="form-control" value="<?= $lastname ?>" placeholder="Last name">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
