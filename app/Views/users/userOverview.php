@@ -25,7 +25,7 @@
                         <td><?= $user['firstName'] ?></td>
                         <td><?= $user['lastName'] ?></td>
                         <td><?= $user['email'] ?></td>
-                        <td><?= $user['created'] ?></td>
+                        <td><?= substr($user['created'], 0, -10) ?></td>
                         <td><?= $user['kontigentstatus'] ?></td>
                         <td>
                         <?php
