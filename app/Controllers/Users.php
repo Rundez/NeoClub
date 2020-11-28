@@ -160,15 +160,19 @@ class Users extends Controller
 
     public function profile()
     {
+        $model = new HobbyModel();
+
         $data = [
             'firstname' => session()->get('firstname'),
             'lastname' => session()->get('lastname'),
+            'email' => session()->get('email'),
+            'hobbies' => array_map(fn($hobby) => $hobby['hobby'], $model->getUserHobbies(session()->get('id'))),
         ];
+
 
         echo view('templates/header', $data);
         echo view('users/profile');
         echo view('templates/footer');
-
     }
 
     public function addProfilePic() 
