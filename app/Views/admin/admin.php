@@ -1,11 +1,10 @@
-<?php if(!session()->get('isLoggedIn')) {
-    header('location:/');
+<?php if(!session()->get('role') != 'admin') {
+    header('location:/posts');
     exit();
 } ?>
 <div class="container" style="margin-top: 1em">
     <div class="jumbotron" style="background-color:white;">
     <h1><?= $title?></h1>
-
 <ul class="list-group" style="width: 50%;">
   <li class="list-group-item"><a role="button" href="/users">Alle medlemmer</a></li>
   <li class="list-group-item">Dapibus ac facilisis in</li>

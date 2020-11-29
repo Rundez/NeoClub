@@ -98,7 +98,8 @@ class Users extends Controller
             'firstname' => $user['firstName'],
             'lastname' => $user['lastName'],
             'email' => $user['email'],
-            'isLoggedIn' => true
+            'isLoggedIn' => true,
+            'role' => $user['role']
         ];
 
         session()->set($data);
@@ -165,6 +166,7 @@ class Users extends Controller
             'lastname' => session()->get('lastname'),
             'email' => session()->get('email'),
             'hobbies' => array_map(fn($hobby) => $hobby['hobby'], $model->getUserHobbies(session()->get('id'))),
+            'role' => session()->get('role'),
         ];
 
 

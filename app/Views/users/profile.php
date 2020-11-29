@@ -60,6 +60,8 @@
                 <p class="font-italic mb-0">Firstname: <?= session()->get('firstname') ?></p>
                 <p class="font-italic mb-0">Lastname: <?= session()->get('lastname') ?></p>
                 <p class="font-italic mb-0">Email: <?= session()->get('email') ?></p>
+                <p class="font-italic mb-0">Role: <?= session()->get('role') ?></p>
+
                 </div>
             </div>
 

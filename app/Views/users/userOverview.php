@@ -1,5 +1,6 @@
-<?php if (!session()->get('isLoggedIn')) {
-    header('location:/');
+<?php if(!session()->get('role') != 'admin')
+{
+    header('location:/posts');
     exit();
 } ?>
 <div class="container mb-5 mt-3">
