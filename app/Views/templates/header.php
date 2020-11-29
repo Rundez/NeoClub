@@ -38,15 +38,6 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/posts">The wall <span class="sr-only">(current)</span></a>
                     </li>
-
-                    <?php if (session()->get('role') == 'admin') : ?>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/admin">Admin</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/users">All users</a>
-                        </li>
-                    <?php endif ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="/chat">Chat</a>
                     </li>
@@ -68,6 +59,12 @@
                             <a class="dropdown-item" href="/edit">Edit profile</a>
                         </div>
                     </li>
+                    <?php if (session()->get('role') == 'admin') : ?>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin">Admin</a>
+                        </li>
+                    <?php endif ?>
+
                     <li class="nav-item active">
                         <p style="margin: 0" class="nav-link"><?= session()->get('firstname') ?></p>
                     </li>

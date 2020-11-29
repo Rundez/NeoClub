@@ -1,4 +1,4 @@
-<?php if(!session()->get('role') != 'admin')
+<?php if(session()->get('role') != 'admin')
 {
     header('location:/posts');
     exit();
