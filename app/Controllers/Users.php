@@ -150,7 +150,7 @@ class Users extends Controller
     public function logout()
     {
         if(session()->get('isLoggedIn')) {
-            session()->remove('isLoggedIn');
+            session()->destroy();
         }
 
         return redirect()->to('/');
