@@ -22,10 +22,10 @@ class Users extends Controller
         $allHobbies = array_map(fn($user) => $hobbies->getUserHobbies($user['id']), $data['users']);
 
         // Dette MÅ fikses....
-        for($i = 0; $i < count($data['users']); $i++) {
+        for ($i = 0; $i < count($data['users']); $i++) {
             $data['users'][$i]['hobbies'] = $allHobbies[$i] ? $allHobbies[$i] : "Ingen data";
         }
-        
+
         echo view('templates/header', $data);
         echo view('users/useroverview', $data);
         echo view('templates/footer', $data);
@@ -117,8 +117,11 @@ class Users extends Controller
             $rules = [
                 'firstname' => 'required|min_length[3]|max_length[20]',
                 'lastname' => 'required|min_length[3]|max_length[20]',
+                'phone' => 'required|min_length[8]|max_length[8]',
                 'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
                 'address' => 'required',
+                'postalcode' => 'required|min_length[4]|max_length[4]',
+                'posttown' => 'required',
                 'password' => 'required|min_length[6]|max_length[255]',
                 'password_confirm' => 'matches[password]'
             ];
@@ -128,13 +131,16 @@ class Users extends Controller
             } else {
                 //Store the user in the db 
                 $model = new UsersModel();
-
+                $date = date("d.m.Y");
                 $newData = [
                     'firstName' => $this->request->getVar('firstname'),
                     'lastName' => $this->request->getVar('lastname'),
                     'email' => $this->request->getVar('email'),
                     'address' => $this->request->getVar('address'),
-                    'password' => $this->request->getVar('password')
+                    'postalcode' => $this->request->getVar('postalcode'),
+                    'posttown' => $this->request->getVar('posttown'),
+                    'phone' => $this->request->getVar('phone'),
+                    'password' => $this->request->getVar('password'),
                 ];
 
                 $model->save($newData);
@@ -152,7 +158,7 @@ class Users extends Controller
 
     public function logout()
     {
-        if(session()->get('isLoggedIn')) {
+        if (session()->get('isLoggedIn')) {
             session()->destroy();
         }
 
@@ -177,12 +183,12 @@ class Users extends Controller
         echo view('templates/footer');
     }
 
-    public function addProfilePic() 
+    public function addProfilePic()
     {
         $image = $this->request->getFile('image');
 
         // Checks the size and type if the file
-        if($image->getSizeByUnit('mb') <= 2 && (strpos($image->guessExtension(), 'jpg') !== false) || strpos($image->guessExtension(), 'png') !== false) {
+        if ($image->getSizeByUnit('mb') <= 2 && (strpos($image->guessExtension(), 'jpg') !== false) || strpos($image->guessExtension(), 'png') !== false) {
             $image->move('uploads', session()->get('id'));
             return redirect()->to("/profile");
         } else {
@@ -193,7 +199,7 @@ class Users extends Controller
         }
     }
 
-    public function edit() 
+    public function edit()
     {
         $data = [
             'firstname' => $this->request->getVar('firstname'),
