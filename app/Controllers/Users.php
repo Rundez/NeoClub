@@ -119,6 +119,8 @@ class Users extends Controller
                 'lastname' => 'required|min_length[3]|max_length[20]',
                 'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
                 'address' => 'required',
+                'postalcode' => 'required|min_length[4]|max_length[4]',
+                'posttown' => 'required',
                 'password' => 'required|min_length[6]|max_length[255]',
                 'password_confirm' => 'matches[password]'
             ];
@@ -134,6 +136,8 @@ class Users extends Controller
                     'lastName' => $this->request->getVar('lastname'),
                     'email' => $this->request->getVar('email'),
                     'address' => $this->request->getVar('address'),
+                    'postalcode' => $this->request->getVar('postalcode'),
+                    'posttown' => $this->request->getVar('posttown'),
                     'password' => $this->request->getVar('password')
                 ];
 
