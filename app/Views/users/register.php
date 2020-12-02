@@ -8,17 +8,23 @@
           <div class="row">
             <div class="col-12 col-sm-6">
               <div class="form-group">
-                <label for="firstName">First name</label>
-                <input type="text" name="firstname" id="firstname" value="<?= set_value('firstname') ?>">
+                <label for="firstname">First name</label>
+                <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname') ?>">
               </div>
             </div>
             <div class="col-12 col-sm-6">
               <div class="form-group">
-                <label for="lastName">Last name</label>
-                <input type="text" name="lastname" id="lastname" value="<?= set_value('lastname') ?>">
+                <label for="lastname">Last name</label>
+                <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname') ?>">
               </div>
             </div>
-            <div class="col-12">
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input type="tel" class="form-control" name="phone" id="phone" value="<?= set_value('phone') ?>">
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email') ?>">
