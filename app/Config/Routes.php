@@ -30,7 +30,9 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->resource('restctivities');
 $routes->resource('restchat');
+$routes->resource('restpost');
 $routes->get('/', 'Home::index');
 $routes->get('news/(:segment)', 'News::view/$1');
 $routes->get('news', 'News::index');
@@ -48,6 +50,8 @@ $routes->get('upcoming', 'Activities::index');
 $routes->get('activities', 'Activities::allActivities');
 $routes->get('profile', 'Users::profile');
 $routes->match(['post'],'edit', 'Users::edit');
+$routes->get('profile', 'Users::profile');
+
 
 
 
