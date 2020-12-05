@@ -5,8 +5,15 @@ namespace App\Controllers;
 use App\Models\PostsModel;
 use CodeIgniter\Controller;
 
+
+/**
+ * This class controls the flow of posts to the system. 
+ */
 class Posts extends Controller
 {
+    /**
+     * Fetches all the posts and returns the view to the user. 
+     */
     public function index()
     {
         $model = new PostsModel();
@@ -17,12 +24,15 @@ class Posts extends Controller
             'title' => 'The wall',
         ];
 
-
         echo view('templates/header', $data);
         echo view('posts/wall');
         echo view('templates/footer');
     }
 
+    /**
+     * Fetches one user with information. 
+     * @param string $slug 
+     */
     public function view($slug = null)
     {
         $model = new PostsModel();
@@ -41,9 +51,11 @@ class Posts extends Controller
         echo view('templates/footer', $data);
     }
 
+    /**
+     * Creates a new post and inserts it to the db
+     */
     public function newPost()
     {
-
         $data = [
             'title' => $this->request->getVar('title'),
             'body' => $this->request->getVar('body'),

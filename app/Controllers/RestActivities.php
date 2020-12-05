@@ -6,7 +6,10 @@ use App\Models\ActivityModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 
-
+/**
+ * REST API controller which inherits CRUD methods to manipulate
+ * the activities data.  
+ */
 class RestActivities extends ResourceController
 {
     use ResponseTrait;
