@@ -53,8 +53,6 @@ $routes->match(['post'],'edit', 'Users::edit');
 $routes->get('profile', 'Users::profile');
 $routes->get('admin/edituser', 'Admin::editUser');
 
-=======
->>>>>>> master
 
 
 
