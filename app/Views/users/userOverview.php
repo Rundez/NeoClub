@@ -4,7 +4,7 @@
     exit();
 } ?>
 <div class="container mb-5 mt-3">
-    <h1 style="margin-top: 0.5em;"><?= ($title); ?></h1>
+    <h1 style="margin-top: 0.5em;">Neo ungdomsklubb medlemmer</h1>
     <hr>
     <table class="table table-active" id="selectedColumn">
         <thead>

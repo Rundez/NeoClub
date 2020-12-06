@@ -47,8 +47,8 @@ class Posts extends Controller
         }
 
         echo view('templates/header', $data);
-        echo view('users/selectedUser', $data);
-        echo view('templates/footer', $data);
+        echo view('users/selectedUser');
+        echo view('templates/footer');
     }
 
     /**

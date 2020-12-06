@@ -7,11 +7,29 @@
     <div class="col-12 col-lg-10 col-xl-8 mx-auto">
       <h2 class="mb-4 mt-4 page-title">Edit member profile</h2>
       <div class="my-4">
+
+        <?php if (session()->get('error')) : ?>
+          <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+              <?= session()->get('error') ?>
+            </div>
+          </div>
+        <?php endif; ?>
+
+        <?php if (session()->get('success')) : ?>
+          <div class="col-12">
+            <div class="alert alert-success" role="alert">
+              <?= session()->get('success') ?>
+            </div>
+          </div>
+        <?php endif; ?>
+
+
         <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
           <li class="nav-item">
           </li>
         </ul>
-        <form>
+        <form action="/admin/edituser" method="post">
           <div class="row mt-5 align-items-center">
             <div class="col-md-3 text-center mb-5">
               <div class="avatar avatar-xl">
@@ -21,8 +39,8 @@
             <div class="col">
               <div class="row align-items-center">
                 <div class="col-md-7">
-                  <h4 class="mb-1"><?= $user['firstName']?> <?= $user['lastName']?></h4>
-                  <p class="small mb-3"><span class="badge badge-dark">New York, USA</span></p>
+                  <h4 class="mb-1"><?= $user['firstName'] ?> <?= $user['lastName'] ?></h4>
+                  <p class="small mb-3"><span class="badge badge-dark"><?= $user['posttown'] ?></span></p>
                 </div>
               </div>
               <div class="row mb-4">
@@ -33,9 +51,9 @@
                   </p>
                 </div>
                 <div class="col">
-                  <p class="small mb-0 text-muted">Nec Urna Suscipit Ltd</p>
-                  <p class="small mb-0 text-muted">P.O. Box 464, 5975 Eget Avenue</p>
-                  <p class="small mb-0 text-muted">(537) 315-1481</p>
+                  <p class="small mb-0 text-muted"><?= $user['address'] . ", " . $user['postalcode'] ?></p>
+                  <p class="small mb-0 text-muted"><?= $user['posttown'] ?></p>
+                  <p class="small mb-0 text-muted"><?= $user['phone'] ?></p>
                 </div>
               </div>
             </div>
@@ -44,94 +62,70 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="firstname">Firstname</label>
-              <input type="text" id="firstname" class="form-control" placeholder="Brown" />
+              <input type="text" name="firstname" id="firstname" value="<?= $user['firstName'] ?>" class="form-control"  />
             </div>
             <div class="form-group col-md-6">
               <label for="lastname">Lastname</label>
-              <input type="text" id="lastname" class="form-control" placeholder="Asher" />
+              <input type="text" name="lastname" id="lastname" value="<?= $user['lastName'] ?>" class="form-control"  />
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="brown@asher.me" />
-          </div>
-          <div class="form-group">
-            <label for="inputAddress5">Address</label>
-            <input type="text" class="form-control" id="inputAddress5" placeholder="P.O. Box 464, 5975 Eget Avenue" />
+            <input type="email" name="email" class="form-control" value="<?= $user['email'] ?>" id="inputEmail4" />
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputCompany5">Company</label>
-              <input type="text" class="form-control" id="inputCompany5" placeholder="Nec Urna Suscipit Ltd" />
+              <label for="address">Address</label>
+              <input type="text" name="address" class="form-control" value="<?= $user['address'] ?>" id="addres"  />
             </div>
             <div class="form-group col-md-4">
-              <label for="inputState5">State</label>
-              <select id="inputState5" class="form-control">
-                <option selected="">Choose...</option>
-                <option>...</option>
-              </select>
+              <label for="posttown">Post town</label>
+              <input type="text" name="posttown" class="form-control" value="<?= $user['posttown'] ?>" id="posttown"  />
             </div>
             <div class="form-group col-md-2">
-              <label for="inputZip5">Zip</label>
-              <input type="text" class="form-control" id="inputZip5" placeholder="98232" />
+              <label for="postalcode">Postal code</label>
+              <input type="text" name="postalcode" value="<?= $user['postalcode'] ?>" class="form-control" id="postalcode" />
             </div>
           </div>
-          <hr class="my-4" />
-          <div class="row mb-4">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="inputPassword4">Old Password</label>
-                <input type="password" class="form-control" id="inputPassword5" />
-              </div>
-              <div class="form-group">
-                <label for="inputPassword5">New Password</label>
-                <input type="password" class="form-control" id="inputPassword5" />
-              </div>
-              <div class="form-group">
-                <label for="inputPassword6">Confirm Password</label>
-                <input type="password" class="form-control" id="inputPassword6" />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <p class="mb-2">Password requirements</p>
-              <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
-              <ul class="small text-muted pl-4 mb-0">
-                <li>Minimum 8 character</li>
-                <li>At least one special character</li>
-                <li>At least one number</li>
-                <li>Can’t be the same as a previous password</li>
-              </ul>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Save Change</button>
-        </form>
       </div>
+      <input type="hidden" name="id" value="<?= $user['id'] ?>">
+      <input type="hidden" name="slug" value="<?= $user['slug'] ?>">
+
+      <button type="submit" class="btn btn-primary confirm">Save Changes</button>
+      </form>
     </div>
   </div>
 </div>
+</div>
 
 <style>
-  body{
+  body {
     color: #8e9194;
     background-color: #f4f6f9;
-}
-.avatar-xl img {
+  }
+
+  .avatar-xl img {
     width: 110px;
-}
-.rounded-circle {
+  }
+
+  .rounded-circle {
     border-radius: 50% !important;
-}
-img {
+  }
+
+  img {
     vertical-align: middle;
     border-style: none;
-}
-.text-muted {
+  }
+
+  .text-muted {
     color: #aeb0b4 !important;
-}
-.text-muted {
+  }
+
+  .text-muted {
     font-weight: 300;
-}
-.form-control {
+  }
+
+  .form-control {
     display: block;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
@@ -145,5 +139,9 @@ img {
     border: 1px solid #eef0f3;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+  }
+
+  .confirm {
+    margin-bottom: 20px;
+  }
 </style>
