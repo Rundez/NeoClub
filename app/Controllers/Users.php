@@ -144,6 +144,8 @@ class Users extends Controller
                 ];
 
                 $model->save($newData);
+                $slug = $model->select('id, firstName')->where('email', $this->request->getVar('email'))->first();
+                $model->updateProfile($slug['id'], $data = ['slug' => $slug['firstName'] . $slug['id']]);
                 $session = session();
                 $session->setFlashdata('success', 'Successful registration');
                 return redirect()->to('/login');
