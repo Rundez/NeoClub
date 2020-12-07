@@ -61,7 +61,7 @@ class Admin extends Controller
             $model->updateProfile($id, $data);
 
             session()->setFlashdata('success', 'Successful edit');
-            return redirect()->to(site_url(['users', $slug]));
+            return redirect()->to("http://localhost:8080/users/${slug}");
         }
     }
 }
