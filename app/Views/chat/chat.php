@@ -98,6 +98,7 @@
     }
 
     function makeLi(message) {
+        message.senderId = message.sender
         // Some logic to make your own messages say You instead of your name
         //let sender = document.querySelector("#sender").value
         if (message.sender == <?= session()->get('id') ?>) {
@@ -109,7 +110,7 @@
         return `
     <li data-id=${message.id}
     <div class="list-container">
-        <img src="../images/Persona.png" alt="Avatar">
+        <img src="../uploads/${message.senderId}" alt="Avatar">
         <h4>${message.sender}</h4>
         <p>${message.message}</p>
         <span class="time-right">${message.sent.slice(0, -7)}</span>
