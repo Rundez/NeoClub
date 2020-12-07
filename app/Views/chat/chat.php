@@ -102,9 +102,14 @@
         // Some logic to make your own messages say You instead of your name
         //let sender = document.querySelector("#sender").value
         let  style;
+        let imgPos;
+        let senderPos;
         if (message.sender == <?= session()->get('id') ?>) {
-           style = "style='background-color:lightblue'";
+           style = "style='background-color:lightblue'"
+          imgPos = "style='float: right'"
+          senderPos = "style='float: right; padding-right: 10px;'"
             message.sender = "You"
+
         } else {
             message.sender = `${message.firstName} ${message.lastName}`
         }
@@ -113,8 +118,8 @@
       return `
     <li data-id=${message.id}
     <div class="list-container" ${style}">
-        <img src="../uploads/${message.senderId}" alt="Avatar">
-        <h4>${message.sender}</h4>
+        <img src="../uploads/${message.senderId}" alt="Avatar"  ${imgPos}>
+        <h4 ${senderPos}>${message.sender}</h4>
         <p>${message.message}</p>
         <span class="time-right">${message.sent.slice(0, -7)}</span>
     </div>
