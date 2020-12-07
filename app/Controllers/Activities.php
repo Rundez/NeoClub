@@ -45,6 +45,7 @@ class Activities extends Controller
         $model = new ActivityModel();
         $data = [
             'activity' => $model->getActivities($slug),
+            'attending' => $model->getAttending($model->getActivities($slug)['id'])
         ];
 
 
@@ -81,7 +82,7 @@ class Activities extends Controller
         $data['image'] = $this->addFile($image);
         $model = new ActivityModel();
 
-        if($model->save($data)) {
+        if ($model->save($data)) {
             $session->setflashdata('success', 'Activity added succesfully');
             return redirect()->to('/activities');
         } else {
@@ -92,8 +93,7 @@ class Activities extends Controller
 
     private function addFile($image)
     {
-        if ($image->isValid() && !$image->hasMoved())
-        {
+        if ($image->isValid() && !$image->hasMoved()) {
             $newName = $image->getRandomName();
             $image->move('uploads', $newName);
             return $newName;
@@ -101,4 +101,18 @@ class Activities extends Controller
         return false;
     }
 
+    public function attendActivity($activityID)
+    {
+        $model = new ActivityModel();
+
+        $data = [
+            'activityID' => $activityID,
+            'userID' => session()->get('id'),
+        ];
+
+        $model->attendActivity($data);
+
+        // Redirect to last URL
+        return redirect()->to($_SERVER['HTTP_REFERER']);
+    }
 }
