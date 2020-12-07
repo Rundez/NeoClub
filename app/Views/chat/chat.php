@@ -101,15 +101,18 @@
         message.senderId = message.sender
         // Some logic to make your own messages say You instead of your name
         //let sender = document.querySelector("#sender").value
+        let  style;
         if (message.sender == <?= session()->get('id') ?>) {
+           style = "style='background-color:lightblue'";
             message.sender = "You"
         } else {
             message.sender = `${message.firstName} ${message.lastName}`
         }
         //prettier-ignore
-        return `
+
+      return `
     <li data-id=${message.id}
-    <div class="list-container">
+    <div class="list-container" ${style}">
         <img src="../uploads/${message.senderId}" alt="Avatar">
         <h4>${message.sender}</h4>
         <p>${message.message}</p>
