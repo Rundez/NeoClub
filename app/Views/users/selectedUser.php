@@ -33,7 +33,7 @@
           <div class="row mt-5 align-items-center">
             <div class="col-md-3 text-center mb-5">
               <div class="avatar avatar-xl">
-                <img src="../uploads/<?= session()->get('id')?>" alt="..." class="avatar-img rounded-circle" />
+                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
               </div>
             </div>
             <div class="col">

@@ -46,12 +46,16 @@ $routes->get('admin', 'Admin::index');
 $routes->get('logout', 'Users::logout');
 $routes->get('activities/add', 'Activities::add');
 $routes->get('activities/(:segment)', 'Activities::view/$1');
+$routes->get('getattending/(:segment)', 'Activities::getAttending/$1');
+$routes->get('attendactivity/(:segment)', 'Activities::attendActivity/$1');
+
 $routes->get('upcoming', 'Activities::index');
 $routes->get('activities', 'Activities::allActivities');
 $routes->get('profile', 'Users::profile');
 $routes->match(['post'],'edit', 'Users::edit');
 $routes->get('profile', 'Users::profile');
 $routes->get('admin/edituser', 'Admin::editUser');
+
 
 
 

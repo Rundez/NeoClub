@@ -11,21 +11,26 @@
     <table class="table table-active" id="selectedColumn">
         <thead>
         <tr>
-            <th class="th-sm" scope="col">Navn</th>
-            <th class="th-sm" scope="col">Aktivitet</th>
-            <th class="th-sm" scope="col">Start (YYYY-MM-DD)</th>
-            <th class="th-sm" scope="col">Slutt (YYYY-MM-DD)</th>
-            <th class="th-sm" scope="col">Mer info</th>
+            <th class="th-sm" scope="col">Name</th>
+            <th class="th-sm" scope="col">Kind of activity</th>
+            <th class="th-sm" scope="col">Start </th>
+            <th class="th-sm" scope="col">End </th>
+            <th class="th-sm" scope="col">More info</th>
         </tr>
         </thead>
         <tbody>
         <?php foreach ($activities as $activity) : ?>
+            <?php
+             $start = date('d F, Y H:i:s', strtotime($activity['start']));
+             $end = date('d F, Y H:i:s', strtotime($activity['end']));
+            ?>
+
             <tr>
                 <td><?= $activity['name'] ?></td>
                 <td><?= $activity['aktivitet'] ?></td>
-                <td><?= $activity['start'] ?></td>
-                <td><?= $activity['end'] ?></td>
-                <td><a class="btn btn-info" role="button" href="/activities/<?= esc($activity['slug'], 'url'); ?>">Got to
+                <td><?= $start ?></td>
+                <td><?= $end ?></td>
+                <td><a class="btn btn-info" role="button" href="/activities/<?= esc($activity['slug'], 'url'); ?>">Go to
                         activity</a></td>
             </tr>
         <?php endforeach; ?>
