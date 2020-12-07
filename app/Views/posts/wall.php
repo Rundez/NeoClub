@@ -17,7 +17,7 @@
             <div class="card mb-3 bg-light shadow-sm" style="width: 55%;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                    <img src="https://randomuser.me/api/portraits/men/<?= rand(0,90) ?>.jpg"class="card-img">
+                    <img src="../uploads/<?= $post['id'] ?>" class="card-img" alt="profile picture">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
