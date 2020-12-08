@@ -10,7 +10,10 @@ use CodeIgniter\Model;
 
 class Activities extends Controller
 {
-    // Fetches upcoming activities
+
+    /**
+     * Fetch only upcoming activities.
+     */
     public function index()
     {
         $model = new ActivityModel();
@@ -25,7 +28,9 @@ class Activities extends Controller
         echo view('templates/footer');
     }
 
-    // Fetches previous and upcoming acitivites
+    /**
+     * Fetch previous and upcoming activities.
+     */
     public function allActivities()
     {
         $model = new ActivityModel();
@@ -40,6 +45,9 @@ class Activities extends Controller
         echo view('templates/footer');
     }
 
+    /**
+     * If a slug is provided, render the chosen activity.
+     */
     public function view($slug = null)
     {
         $model = new ActivityModel();
@@ -59,6 +67,9 @@ class Activities extends Controller
     }
 
 
+    /**
+     * Add an activity.
+     */
     public function add()
     {
         $name = $this->request->getVar('name');
@@ -91,6 +102,9 @@ class Activities extends Controller
         }
     }
 
+    /**
+     * Do checks and add file.
+     */
     private function addFile($image)
     {
         if ($image->isValid() && !$image->hasMoved()) {
@@ -101,6 +115,9 @@ class Activities extends Controller
         return false;
     }
 
+    /**
+     * Adds a member to a certain activity.
+     */
     public function attendActivity($activityID)
     {
         $model = new ActivityModel();
@@ -110,9 +127,38 @@ class Activities extends Controller
             'userID' => session()->get('id'),
         ];
 
-        $model->attendActivity($data);
+        // Checks if the person already attends this activity
+        if (!$model->checkAttending($data)) {
+            $model->attendActivity($data);
 
-        // Redirect to last URL
-        return redirect()->to($_SERVER['HTTP_REFERER']);
+            session()->setFlashdata('success', 'You joined this activity!');
+            return redirect()->to($_SERVER['HTTP_REFERER']);
+        } else {
+            //Redirect to last URL
+            session()->setFlashdata('error', 'You are already attending this activity!');
+            return redirect()->to($_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function cancelAttendActivity($activityID)
+    {
+        $model = new ActivityModel();
+
+        $data = [
+            'activityID' => $activityID,
+            'userID' => session()->get('id'),
+        ];
+
+        // Checks if the person already attends this activity
+        if ($model->checkAttending($data)) {
+            $model->cancelAttend($data);
+
+            session()->setFlashdata('success', 'You have succesfully resigned this activity!');
+            return redirect()->to($_SERVER['HTTP_REFERER']);
+        } else {
+            //Redirect to last URL
+            session()->setFlashdata('error', 'You are not attending this activity');
+            return redirect()->to($_SERVER['HTTP_REFERER']);
+        }
     }
 }
