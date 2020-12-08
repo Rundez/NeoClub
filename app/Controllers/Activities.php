@@ -140,6 +140,9 @@ class Activities extends Controller
         }
     }
 
+    /**
+     * Remove the member from an activity
+     */
     public function cancelAttendActivity($activityID)
     {
         $model = new ActivityModel();
