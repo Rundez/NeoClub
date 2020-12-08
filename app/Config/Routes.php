@@ -52,6 +52,7 @@ $routes->get('profile', 'Users::profile');
 $routes->match(['post'],'edit', 'Users::edit');
 $routes->get('profile', 'Users::profile');
 $routes->get('admin/edituser', 'Admin::editUser');
+$routes->get('admin/sendemail/(:segment)', 'Admin::sendEmail/$1');
 
 
 
