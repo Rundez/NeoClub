@@ -64,4 +64,9 @@ class Admin extends Controller
             return redirect()->to("http://localhost:8080/users/${slug}");
         }
     }
+
+    public function addUser()
+    {
+        
+    }
 }

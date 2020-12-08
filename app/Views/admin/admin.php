@@ -1,17 +1,22 @@
-<?php if(session()->get('role') != 'admin') {
+<?php if (session()->get('role') != 'admin') {
     header('location:/posts');
     exit();
 } ?>
 <div class="container" style="margin-top: 1em">
     <div class="jumbotron" style="background-color:white;">
-    <h1><?= $title?></h1>
-<ul class="list-group" style="width: 50%;">
-  <li class="list-group-item"><a role="button" href="/users">Member overview</a></li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-</ul>
-    <a class="btn btn-primary" role="button" href="/users">Add member</a>
+        <h1><?= $title ?></h1>
+        <ul class="list-group" style="width: 50%;">
+            <?php if (session()->get('success')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->get('success') ?>
+                </div>
+            <?php endif; ?>
+
+            <li class="list-group-item"><a role="button" href="/users">Member overview</a></li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item"><a role="button" href="/register">Add member</a></li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
     </div>
 </div>
