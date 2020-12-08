@@ -131,7 +131,7 @@ class Users extends Controller
             } else {
                 //Store the user in the db 
                 $model = new UsersModel();
-                $date = date("d.m.Y");
+
                 $newData = [
                     'firstName' => $this->request->getVar('firstname'),
                     'lastName' => $this->request->getVar('lastname'),
@@ -142,13 +142,26 @@ class Users extends Controller
                     'phone' => $this->request->getVar('phone'),
                     'password' => $this->request->getVar('password'),
                 ];
+                
+                // Not pretty, but assigns the role if given. 
+                if($this->request->getVar('role') == 'admin') {
+                    $newData['role'] = 'admin';
+                } else {
+                    $newData['role'] = 'member';
+                }
 
                 $model->save($newData);
                 $slug = $model->select('id, firstName')->where('email', $this->request->getVar('email'))->first();
                 $model->updateProfile($slug['id'], $data = ['slug' => $slug['firstName'] . $slug['id']]);
                 $session = session();
                 $session->setFlashdata('success', 'Successful registration');
-                return redirect()->to('/login');
+
+                if($this->request->getVar('type') == 'admin') {
+                    return redirect()->to('/admin');
+
+                } else {
+                    return redirect()->to('/login');
+                }
             }
         }
 
