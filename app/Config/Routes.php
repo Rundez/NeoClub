@@ -48,6 +48,8 @@ $routes->get('activities/add', 'Activities::add');
 $routes->get('activities/(:segment)', 'Activities::view/$1');
 $routes->get('getattending/(:segment)', 'Activities::getAttending/$1');
 $routes->get('attendactivity/(:segment)', 'Activities::attendActivity/$1');
+$routes->get('cancelAttendActivity/(:segment)', 'Activities::cancelAttendActivity/$1');
+
 
 $routes->get('upcoming', 'Activities::index');
 $routes->get('activities', 'Activities::allActivities');

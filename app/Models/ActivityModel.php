@@ -53,4 +53,26 @@ class ActivityModel extends Model
 
         return $builder->insert($data);
     }
+
+    public function checkAttending(array $data)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('attending');
+
+        $builder->where('activityID', $data['activityID']);
+        $builder->where('userID', $data['userID']);
+
+        return $builder->get()->getResultArray();
+    }
+
+    public function cancelAttend(array $data)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('attending');
+
+        $builder->where('activityID', $data['activityID']);
+        $builder->where('userID', $data['userID']);
+
+        return $builder->delete();
+    }
 }
