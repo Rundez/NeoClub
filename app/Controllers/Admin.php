@@ -73,12 +73,17 @@ class Admin extends Controller
         }
     }
 
+
     /**
      * Sends a invoice to the selected user. Only allowed by admins. 
      * Mailtrap is used for testing.
      */
-    function sendEmail($emailTo)
+    function sendEmail($emailTo = null)
     {
+        if (!session()->get('isLoggedIn')) {
+            header('location:/posts');
+            exit();
+        }
         $email = Services::email();
 
         $email->setFrom('4f8c9e946b-3e0e1c@inbox.mailtrap.io', 'Neo Club');
