@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 
+/**
+ * A class purely made for testing.
+ */
 class Pages extends Controller
 {
     public function index()

@@ -11,6 +11,9 @@ class ChatModel extends Model
     protected $allowedFields = ['id', 'message', 'sender'];
 
 
+    /**
+     * Returns all chats in the db
+     */
     public function fetch()
     {
         $db      = \Config\Database::connect();

@@ -9,6 +9,9 @@ use Config\Services;
 
 class Admin extends Controller
 {
+    /**
+     * Index method that returns the main admin panel
+     */
     public function index()
     {
         $data = [
@@ -20,6 +23,10 @@ class Admin extends Controller
         echo view('templates/footer');
     }
 
+    /**
+     * Function that verifies the incoming data and returns the user back
+     * to the same page.
+     */
     public function editUser()
     {
         // Loading the form helper to verify input
@@ -66,6 +73,10 @@ class Admin extends Controller
         }
     }
 
+    /**
+     * Sends a invoice to the selected user. Only allowed by admins. 
+     * Mailtrap is used for testing.
+     */
     function sendEmail($emailTo)
     {
         $email = Services::email();

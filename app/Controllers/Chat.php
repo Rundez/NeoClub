@@ -8,6 +8,9 @@ use CodeIgniter\Controller;
 
 class Chat extends Controller
 {
+    /**
+     * Returns the chat view. All chats are loaded from the REST controller.
+     */
     public function index()
     {
         $model = new ChatModel();
