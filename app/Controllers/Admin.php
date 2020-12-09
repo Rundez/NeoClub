@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use CodeIgniter\Controller;
 use App\Models\UsersModel;
+use Config\Services;
 
 class Admin extends Controller
 {
@@ -64,9 +65,16 @@ class Admin extends Controller
             return redirect()->to("http://localhost:8080/users/${slug}");
         }
     }
+  
+    function sendEmail($emailTo) {
+        $email = Services::email();
 
-    public function addUser()
-    {
-        
+        $email->setFrom('4f8c9e946b-3e0e1c@inbox.mailtrap.io', 'Neo Club');
+        $email->setTo($emailTo);
+        $email->setSubject('membership payment');
+        $email->setMessage('Please pay for your membership');
+        $email->send();
+        session()->setFlashdata('success', 'Invoice sent successfully');
+        return redirect()->to($_SERVER['HTTP_REFERER']);
     }
-}
+   
