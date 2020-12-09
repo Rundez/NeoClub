@@ -38,7 +38,7 @@ class ActivityModel extends Model
         $db = \Config\Database::connect();
 
         $query = $db->query(
-            "select users.firstName, users.lastName
+            "select users.firstName, users.lastName, users.slug
             from users
             right join attending on users.id = attending.userID
             where attending.activityID = $activityID;");        

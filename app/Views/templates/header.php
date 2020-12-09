@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Neo ungdomsklubb</title>
+    <title>Neo Club</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/home.css">
@@ -43,11 +43,11 @@
                     </li>
                     <li class="nav-item active dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Aktiviteter
+                            Activities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/upcoming">Kommende aktiviteter</a>
-                            <a class="dropdown-item" href="/activities">Alle aktiviteter</a>
+                            <a class="dropdown-item" href="/upcoming">Upcoming activities</a>
+                            <a class="dropdown-item" href="/activities">All activities</a>
                         </div>
                     </li>
                     <li class="nav-item active dropdown">
