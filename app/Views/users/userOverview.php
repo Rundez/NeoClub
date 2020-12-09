@@ -15,7 +15,7 @@
                 <th class="th-sm" scope="col">Medlem siden</th>
                 <th class="th-sm" scope="col">Kontigentstatus</th>
                 <th class="th-sm" scope="col">Aktiviteter</th>
-                <th class="th-sm" scope="col">Gå til medlem</th>
+                <th class="th-sm" scope="col">Gå til medlem</th>    
             </tr>
         </thead>
 

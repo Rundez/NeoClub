@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\PostsModel;
 use CodeIgniter\Controller;
-
+use App\Models\CommentModel;
 
 /**
  * This class controls the flow of posts to the system. 
@@ -17,12 +17,17 @@ class Posts extends Controller
     public function index()
     {
         $model = new PostsModel();
+        $comments = new CommentModel();
 
         // fetch data from DB. Reverse the array.
         $data = [
             'posts' => array_reverse($model->getPosts(), true),
             'title' => 'The wall',
         ];
+
+        for ($i = 0; $i < count($data['posts']); $i++) {
+            $data['posts'][$i]['comments'] = $comments->getCommentsForPost($data['posts'][$i]['postID']);
+        }
 
         echo view('templates/header', $data);
         echo view('posts/wall');
@@ -69,8 +74,22 @@ class Posts extends Controller
         }
 
         $model = new PostsModel();
-        if($model->insert($data)) {
+        if ($model->insert($data)) {
             return redirect()->to('/posts');
         }
+    }
+
+    public function addComment()
+    {
+        $model = new CommentModel();
+        $data = [
+            'postID' => $this->request->getVar('postid'),
+            'message' => $this->request->getVar('message'),
+            'senderID' => session()->get('id')
+        ];
+
+        $model->insert($data);
+        session()->setflashdata('success', 'Succesfully posted a comment');
+        return redirect()->to('/posts');
     }
 }

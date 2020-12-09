@@ -7,14 +7,16 @@ use CodeIgniter\Model;
 class PostsModel extends Model
 {
     protected $table = 'posts';
-    protected $allowedFields = ['creator', 'title', 'body'];
+    protected $allowedFields = ['creator', 'title', 'body, id, created'];
 
     public function getPosts()
     {
         $db      = \Config\Database::connect();
         $builder = $db->table($this->table);
         
-        $builder->select('*');
+        $builder->select(
+        'posts.creator, posts.title, posts.body, posts.id as postID, users.firstName, users.lastName,
+        users.slug, users.role, users.id');
         $builder->join('users', 'posts.creator = users.id');
         $query = $builder->get();
         return $query->getResultArray();
