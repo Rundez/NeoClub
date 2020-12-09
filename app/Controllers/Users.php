@@ -16,7 +16,7 @@ class Users extends Controller
 
         $data = [
             'users' => $model->getUsers(),
-            'title' => 'Neo ungdomsklubb medlemmer',
+            'title' => 'Neo Club Members',
         ];
 
         $allHobbies = array_map(fn($user) => $hobbies->getUserHobbies($user['id']), $data['users']);
@@ -225,7 +225,7 @@ class Users extends Controller
         $model = new UsersModel();
         $model->updateProfile(session()->get('id'), $data);
 
-        session()->setFlashdata('success', 'Profile updated. Please relog to see the changes');
+        session()->setFlashdata('success', 'Profile updated. Please refresh the page to see the changes');
 
         return redirect()->to("/profile");
     }

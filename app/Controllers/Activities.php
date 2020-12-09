@@ -94,7 +94,7 @@ class Activities extends Controller
         $model = new ActivityModel();
 
         if ($model->save($data)) {
-            $session->setflashdata('success', 'Activity added succesfully');
+            $session->setflashdata('success', 'Activity added successfully');
             return redirect()->to('/activities');
         } else {
             $session->setflashdata('error', 'Something went wrong! Please try again');
@@ -156,11 +156,11 @@ class Activities extends Controller
         if ($model->checkAttending($data)) {
             $model->cancelAttend($data);
 
-            session()->setFlashdata('success', 'You have succesfully resigned this activity!');
+            session()->setFlashdata('success', 'You have successfully resigned this activity!');
             return redirect()->to($_SERVER['HTTP_REFERER']);
         } else {
             //Redirect to last URL
-            session()->setFlashdata('error', 'You are not attending this activity');
+            session()->setFlashdata('error', 'You are not attending this activity - click attend if you wish to join');
             return redirect()->to($_SERVER['HTTP_REFERER']);
         }
     }
