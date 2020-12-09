@@ -9,6 +9,9 @@ class CommentModel extends Model
     protected $table = 'comments';
     protected $allowedFields = ['message', 'postID', 'senderID'];
 
+    /**
+     * Returns an array of comments to a chosen post
+     */
     public function getCommentsForPost($postID)
     {
         $db      = \Config\Database::connect();

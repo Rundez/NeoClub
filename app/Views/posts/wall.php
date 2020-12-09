@@ -46,8 +46,8 @@
                 <div class="box-footer mb-2" style="width: 70%">
                     <form action="posts/addComment" method="post"> <img class="img-responsive img-circle img-sm" src="../uploads/<?= session()->get('id') ?>" onerror="this.onerror=null;this.src='https://img.icons8.com/office/36/000000/person-female.png';">
                         <div class="img-push"> <input type="text" name="message" class="form-control input-sm" placeholder="Press enter to post comment"> </div>
-                        <?php if($post['postID']) : ?>
-                        <input type="hidden" name="postid" value="<?= $post['postID']?>" ?>
+                        <?php if ($post['postID']) : ?>
+                            <input type="hidden" name="postid" value="<?= $post['postID'] ?>" ?>
                         <?php endif; ?>
                     </form>
                 </div>

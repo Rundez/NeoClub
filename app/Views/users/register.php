@@ -78,33 +78,51 @@ if (session()->get('isLoggedIn') && session()->get('role') == 'admin') {
           </div>
 
           <div class="row">
-            <div class="col-12 col-sm-4">
-              <input type="hidden" name="type" value="<?= $type ?>">
-              <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-              
-            <?php if($type == 'admin') : ?>
-            <div class="col-sm-8">
-            <div class="form-group">
-              <label for="rights">Select role</label>
-              <select class="form-select" id="role" aria-label="Default select example">
-                <option value="member">Member</option>
-                <option value="admin">Admin</option>
-              </select>
+            <div class="col-12 col-sm-4 mb-2">
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                  <label class="form-check-label" for="male">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                  <label class="form-check-label" for="female">
+                    Female
+                  </label>
+                </div>
             </div>
           </div>
-          <?php endif; ?>
 
-            <?php if ($type == 'member') : ?>
-              <div class="col-12 col-sm-8 text-right">
-                <a href="/login">Already have an account?</a>
+
+            <div class="row">
+              <div class="col-12 col-sm-4">
+                <input type="hidden" name="type" value="<?= $type ?>">
+                <button type="submit" class="btn btn-primary">Register</button>
               </div>
-            <?php endif; ?>
+
+              <?php if ($type == 'admin') : ?>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label for="rights">Select role</label>
+                    <select class="form-select" id="role" aria-label="Default select example">
+                      <option value="member">Member</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                </div>
+              <?php endif; ?>
+
+              <?php if ($type == 'member') : ?>
+                <div class="col-12 col-sm-8 text-right">
+                  <a href="/login">Already have an account?</a>
+                </div>
+              <?php endif; ?>
+            </div>
           </div>
       </div>
     </div>
+    </form>
   </div>
-  </form>
-</div>
 </div>
 </div>

@@ -12,10 +12,12 @@ class ActivityModel extends Model
     // Fetches all the activities if no parameter is given.
     public function getActivities($slug = false)
     {
+        // fetch all activities
         if ($slug === false) {
             return $this->findAll();
         }
 
+        // fetch only one activity
         return $this->asArray()
             ->where(['slug' => $slug])
             ->first();
@@ -33,6 +35,9 @@ class ActivityModel extends Model
         return $builder->get()->getResultArray();
     }
 
+    /**
+     * Fetch all members who are attending to the chosen activity
+     */
     public function getAttending($activityID)
     {
         $db = \Config\Database::connect();
@@ -46,6 +51,9 @@ class ActivityModel extends Model
         return $query->getResultArray();
     }
 
+    /**
+     * Sign up a member to chosen activity
+     */
     public function attendActivity($data) 
     {
         $db = \Config\Database::connect();
@@ -54,6 +62,9 @@ class ActivityModel extends Model
         return $builder->insert($data);
     }
 
+    /**
+     * Returns results if the chosen member is attending an activity
+     */
     public function checkAttending(array $data)
     {
         $db = \Config\Database::connect();

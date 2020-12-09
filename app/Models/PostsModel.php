@@ -9,6 +9,9 @@ class PostsModel extends Model
     protected $table = 'posts';
     protected $allowedFields = ['creator', 'title', 'body', 'id', 'created'];
 
+    /**
+     * Returns an array with all the posts in the db
+     */
     public function getPosts()
     {
         $db      = \Config\Database::connect();

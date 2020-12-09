@@ -7,8 +7,14 @@ use App\Models\UsersModel;
 use CodeIgniter\Controller;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
+/**
+ * A class that handles most of the user-related actions.
+ */
 class Users extends Controller
 {
+    /**
+     * Returns an overview of all users in the database. 
+     */
     public function index()
     {
         $model = new UsersModel();
@@ -19,9 +25,10 @@ class Users extends Controller
             'title' => 'Neo Club Members',
         ];
 
+        // Fetch hobbies for each user
         $allHobbies = array_map(fn($user) => $hobbies->getUserHobbies($user['id']), $data['users']);
 
-        // Dette MÅ fikses....
+        // This could be more elegant. Attatches an array to each user in the main data array.
         for ($i = 0; $i < count($data['users']); $i++) {
             $data['users'][$i]['hobbies'] = $allHobbies[$i] ? $allHobbies[$i] : "Ingen data";
         }
@@ -122,6 +129,7 @@ class Users extends Controller
                 'address' => 'required',
                 'postalcode' => 'required|min_length[4]|max_length[4]',
                 'posttown' => 'required',
+                'gender' => 'required',
                 'password' => 'required|min_length[6]|max_length[255]',
                 'password_confirm' => 'matches[password]'
             ];
@@ -141,6 +149,7 @@ class Users extends Controller
                     'posttown' => $this->request->getVar('posttown'),
                     'phone' => $this->request->getVar('phone'),
                     'password' => $this->request->getVar('password'),
+                    'gender' => $this->request->getVar('gender'),
                 ];
                 
                 // Not pretty, but assigns the role if given. 

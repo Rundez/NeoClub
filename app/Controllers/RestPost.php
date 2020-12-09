@@ -6,7 +6,9 @@ use App\Models\PostsModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 
-
+/**
+ * Only used to send posts to the react-native app. 
+ */
 class RestPost extends ResourceController
 {
     use ResponseTrait;
