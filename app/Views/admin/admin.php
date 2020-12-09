@@ -13,10 +13,7 @@
             <?php endif; ?>
 
             <li class="list-group-item"><a role="button" href="/users">Member overview</a></li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
             <li class="list-group-item"><a role="button" href="/register">Add member</a></li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
         </ul>
     </div>
 </div>
