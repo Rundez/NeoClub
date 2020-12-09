@@ -66,8 +66,12 @@ class Admin extends Controller
         }
     }
 
-    function sendEmail($emailTo)
+    function sendEmail($emailTo = null)
     {
+        if (!session()->get('isLoggedIn')) {
+            header('location:/posts');
+            exit();
+        }
         $email = Services::email();
 
         $email->setFrom('4f8c9e946b-3e0e1c@inbox.mailtrap.io', 'Neo Club');
