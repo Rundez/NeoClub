@@ -1,11 +1,13 @@
-<?php if (session()->get('role') != 'admin') {
+<?php if (session()->get('role') != 'admin' && session()->get('role') != 'member')  {
   header('location:/');
   exit();
 } ?>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <?php if (session()->get('role') == 'admin') : ?>
       <h2 class="mb-4 mt-4 page-title">Edit member profile</h2>
+      <?php endif; ?>
       <div class="my-4">
 
         <?php if (session()->get('error')) : ?>
@@ -59,6 +61,7 @@
             </div>
           </div>
           <hr class="my-4" />
+          <?php if(session()->get('role') == 'admin') : ?>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="firstname">Firstname</label>
@@ -93,6 +96,7 @@
 
       <button type="submit" class="btn btn-primary confirm">Save Changes</button>
       </form>
+      <?php endif ?>
     </div>
   </div>
 </div>

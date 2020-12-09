@@ -25,6 +25,7 @@ class Posts extends Controller
             'title' => 'The wall',
         ];
 
+        // Load the comments for each post in the data array and add it to a corresponding array.
         for ($i = 0; $i < count($data['posts']); $i++) {
             $data['posts'][$i]['comments'] = $comments->getCommentsForPost($data['posts'][$i]['postID']);
         }
@@ -79,6 +80,9 @@ class Posts extends Controller
         }
     }
 
+    /**
+     * Adds a comment to a post, then ruturns the user to the wall.
+     */
     public function addComment()
     {
         $model = new CommentModel();
