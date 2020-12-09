@@ -5,13 +5,14 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use CodeIgniter\Controller;
 use App\Models\UsersModel;
+use Config\Services;
 
 class Admin extends Controller
 {
     public function index()
     {
         $data = [
-            'title' => 'Velkommen til admin'
+            'title' => 'Admin Dashboard'
         ];
 
         echo view('templates/header');
@@ -65,8 +66,17 @@ class Admin extends Controller
         }
     }
 
-    public function addUser()
+    function sendEmail($emailTo)
     {
-        
+        $email = Services::email();
+
+        $email->setFrom('4f8c9e946b-3e0e1c@inbox.mailtrap.io', 'Neo Club');
+        $email->setTo($emailTo);
+        $email->setSubject('Membership payment');
+        $email->setMessage('Please pay for your membership');
+        $email->send();
+        session()->setFlashdata('success', 'Invoice sent successfully');
+        return redirect()->to($_SERVER['HTTP_REFERER']);
     }
 }
+   

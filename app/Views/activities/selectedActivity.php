@@ -46,7 +46,7 @@ $end = date('d F, Y H:i:s', strtotime($activity['end']));
 
                     <ul class="list-group">
                         <?php for ($i = 0; $i < count($attending); $i++) : ?>
-                            <li class="list-group-item"><?= $attending[$i]['firstName'] . " " . $attending[$i]['lastName'] ?></li>
+                            <li class="list-group-item"> <a href="/users/<?=$attending[$i]['slug']?>"><?= $attending[$i]['firstName'] . " " . $attending[$i]['lastName'] ?></a></li>
                             <?php if ($i > 3) {
                                 break;
                             } ?>
@@ -85,7 +85,7 @@ $end = date('d F, Y H:i:s', strtotime($activity['end']));
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Who is coming?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Who is attending?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -93,7 +93,9 @@ $end = date('d F, Y H:i:s', strtotime($activity['end']));
             <div class="modal-body">
                 <ul class="list-group">
                     <?php foreach ($attending as $attending) : ?>
-                        <li class="list-group-item"><?= $attending['firstName'] . " " . $attending['lastName'] ?></li>
+
+
+                        <li class="list-group-item"><a href="/users/<?=$attending['slug'] ?>"><?= $attending['firstName'] . " " . $attending['lastName'] ?> </a></li>
                     <?php endforeach ?>
                 </ul>
             </div>

@@ -4,7 +4,7 @@
 } ?>
 
 <div class="container">
-    <h1 style="width:50%; margin:auto;">This is the future chat..</h1>
+    <h1 style="width:50%; margin:auto;">Neo Chat</h1>
 
     <div class="chat-container" id="chat-container">
 

@@ -65,27 +65,27 @@
                                    aria-describedby="emailHelp" placeholder="Name of activity">
                         </div>
                         <div class="form-group">
-                            <label for="aktivitet">Aktivitet (Feks. Golf)</label>
+                            <label for="aktivitet">Activity (e.g., Golf)</label>
                             <input name="aktivitet" type="text" class="form-control" id="aktivitet"
-                                   placeholder="Hva slags aktivitet?">
+                                   placeholder="What kind of activity?">
                         </div>
                         <div class="form-group">
                             <label for="start">Start</label>
                             <input name="start" type="datetime-local" class="form-control" id="start"
-                                   placeholder="Når starter aktiviteten??">
+                                   placeholder="When does the activity start?">
                         </div>
                         <div class="form-group">
-                            <label for="slutt">Slutt</label>
+                            <label for="slutt">End</label>
                             <input name="end" type="datetime-local" class="form-control" id="slutt"
-                                   placeholder="Når slutter aktiviteten?">
+                                   placeholder="When does the activity end?">
                         </div>
                         <div class="form-group">
-                            <label for="body">Beskrivelse</label>
+                            <label for="body">Description</label>
                             <textarea name="body" rows="3" type="text" class="form-control" id="body"
-                                   placeholder="Beskrivelse"></textarea>
+                                   placeholder="Description"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="image">Velg bilde</label>
+                            <label for="image">Upload image</label>
                             <input name="image" type="file" class="form-control" id="image">
                         </div>
                 </div>
