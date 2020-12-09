@@ -32,6 +32,7 @@ class Admin extends Controller
             'lastname' => 'required|min_length[3]|max_length[20]',
             'email' => 'required|min_length[6]|max_length[50]|valid_email',
             'address' => 'required',
+            'phone' => 'required|min_length[8]|max_length[8]',
             'postalcode' => 'required|min_length[4]|max_length[4]',
             'posttown' => 'required',
         ];
@@ -52,6 +53,7 @@ class Admin extends Controller
                 'lastName' => $this->request->getVar('lastname'),
                 'email' => $this->request->getVar('email'),
                 'address' => $this->request->getVar('address'),
+                'phone' => $this->request->getVar('phone'),
                 'postalcode' => $this->request->getVar('postalcode'),
                 'posttown' => $this->request->getVar('posttown'),
             ];
