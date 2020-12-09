@@ -65,6 +65,7 @@ class Admin extends Controller
             return redirect()->to("http://localhost:8080/users/${slug}");
         }
     }
+  
     function sendEmail($emailTo) {
         $email = Services::email();
 
@@ -75,6 +76,5 @@ class Admin extends Controller
         $email->send();
         session()->setFlashdata('success', 'Invoice sent successfully');
         return redirect()->to($_SERVER['HTTP_REFERER']);
-
     }
-}
+   

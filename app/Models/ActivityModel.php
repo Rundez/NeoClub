@@ -32,4 +32,47 @@ class ActivityModel extends Model
         
         return $builder->get()->getResultArray();
     }
+
+    public function getAttending($activityID)
+    {
+        $db = \Config\Database::connect();
+
+        $query = $db->query(
+            "select users.firstName, users.lastName
+            from users
+            right join attending on users.id = attending.userID
+            where attending.activityID = $activityID;");        
+
+        return $query->getResultArray();
+    }
+
+    public function attendActivity($data) 
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('attending');
+
+        return $builder->insert($data);
+    }
+
+    public function checkAttending(array $data)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('attending');
+
+        $builder->where('activityID', $data['activityID']);
+        $builder->where('userID', $data['userID']);
+
+        return $builder->get()->getResultArray();
+    }
+
+    public function cancelAttend(array $data)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('attending');
+
+        $builder->where('activityID', $data['activityID']);
+        $builder->where('userID', $data['userID']);
+
+        return $builder->delete();
+    }
 }
