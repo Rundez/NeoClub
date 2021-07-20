@@ -1,6 +1,6 @@
 # CodeIgniter 4 Application Starter
 
-## What is CodeIgniter?
+## Neo ungdomsklub
 
 This is the backend for "Neo ungdomsklubb", social media platform. 
 
